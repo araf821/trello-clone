@@ -1,13 +1,9 @@
 import { Button } from "@/components/ui/button";
-import localFont from "next/font/local";
 import { Medal } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Poppins } from "next/font/google";
-
-const headingFont = localFont({
-  src: "../../public/fonts/font.woff2",
-});
+import { headingFont } from "@/lib/fonts";
 
 const poppins = Poppins({
   subsets: ["latin"],
