@@ -16,12 +16,17 @@ const Navbar: FC<NavbarProps> = ({}) => {
           <Logo />
         </div>
         <Button
+          variant="primary"
           size="sm"
           className="rounded-sm hidden md:block h-auto py-1.5 px-2"
         >
           Create
         </Button>
-        <Button className="rounded-sm block md:hidden" size="sm">
+        <Button
+          variant="primary"
+          className="rounded-sm block md:hidden"
+          size="sm"
+        >
           <Plus className="h-4 w-4" />
         </Button>
       </div>
