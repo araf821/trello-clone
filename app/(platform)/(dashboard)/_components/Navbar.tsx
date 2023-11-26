@@ -3,13 +3,14 @@ import { Button } from "@/components/ui/button";
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 import { Plus } from "lucide-react";
 import { FC } from "react";
+import MobileSidebar from "./MobileSidebar";
 
 interface NavbarProps {}
 
 const Navbar: FC<NavbarProps> = ({}) => {
   return (
     <nav className="z-50 px-4 fixed top-0 w-full h-14 border-b  shadow-sm flex items-center">
-      {/* TODO: Mobile sidebar */}
+      <MobileSidebar />
 
       <div className="flex items-center gap-x-4">
         <div className="max-md:hidden flex">
