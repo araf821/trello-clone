@@ -23,7 +23,7 @@ const FormSubmit: FC<FormSubmitProps> = ({
   children,
   className,
   disabled,
-  variant,
+  variant = "primary",
 }) => {
   const { pending } = useFormStatus();
 
