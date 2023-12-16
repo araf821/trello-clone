@@ -11,7 +11,7 @@ const BoardList = async ({}) => {
   const { orgId } = auth();
 
   if (!orgId) {
-    return redirect("/select/org");
+    return redirect("/select-org");
   }
 
   const boards = await db.board.findMany({

@@ -10,7 +10,7 @@ interface NavbarProps {}
 
 const Navbar: FC<NavbarProps> = ({}) => {
   return (
-    <nav className="z-50 px-4 fixed top-0 w-full h-14 border-b  shadow-sm flex items-center">
+    <nav className="z-50 px-4 fixed top-0 w-full h-14 border-b bg-white shadow-sm flex items-center">
       <MobileSidebar />
 
       <div className="flex items-center gap-x-4">
