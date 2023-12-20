@@ -1,5 +1,6 @@
 "use client";
 
+import { copyList } from "@/actions/copy-list";
 import { deleteList } from "@/actions/delete-list";
 import FormSubmit from "@/components/form/FormSubmit";
 import { Button } from "@/components/ui/button";
@@ -33,6 +34,26 @@ const ListOptions: FC<ListOptionsProps> = ({ data, onAddCard }) => {
       toast.error(e);
     },
   });
+
+  const { execute: executeCopyList } = useAction(copyList, {
+    onSuccess: (data) => {
+      toast.success(`List "${data.title}" copied!`);
+      closeRef.current?.click();
+    },
+    onError: (e) => {
+      toast.error(e);
+    },
+  });
+
+  const onCopy = (formData: FormData) => {
+    const id = formData.get("id") as string;
+    const boardId = formData.get("boardId") as string;
+
+    executeCopyList({
+      id,
+      boardId,
+    });
+  };
 
   const onDelete = (formData: FormData) => {
     const id = formData.get("id") as string;
@@ -70,7 +91,7 @@ const ListOptions: FC<ListOptionsProps> = ({ data, onAddCard }) => {
         >
           Add card...
         </Button>
-        <form action="">
+        <form action={onCopy}>
           <input hidden id="id" name="id" value={data.id} />
           <input hidden id="boardId" name="boardId" value={data.boardId} />
           <FormSubmit
