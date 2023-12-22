@@ -10,10 +10,11 @@ import { useEventListener } from "usehooks-ts";
 import ListOptions from "./ListOptions";
 
 interface ListHeaderProps {
+  onAddCard: () => void;
   data: List;
 }
 
-const ListHeader: FC<ListHeaderProps> = ({ data }) => {
+const ListHeader: FC<ListHeaderProps> = ({ data, onAddCard }) => {
   const [title, setTitle] = useState(data.title);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -106,7 +107,7 @@ const ListHeader: FC<ListHeaderProps> = ({ data }) => {
           {title}
         </div>
       )}
-      <ListOptions onAddCard={() => {}} data={data} />
+      <ListOptions onAddCard={onAddCard} data={data} />
     </div>
   );
 };
