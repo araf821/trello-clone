@@ -53,13 +53,14 @@ const FormTextarea = forwardRef<HTMLTextAreaElement, FormTextareaProps>(
           ) : null}
           <Textarea
             onKeyDown={onKeyDown}
-            onClick={onClick}
             onBlur={onBlur}
+            onClick={onClick}
             ref={ref}
             required={required}
-            disabled={disabled || pending}
-            id={id}
             placeholder={placeholder}
+            name={id}
+            id={id}
+            disabled={pending || disabled}
             className={cn(
               "resize-none focus-visible:ring-0 focus-visible:ring-offset-0 ring-0 focus:ring-0 outline-none shadow-sm",
               className
