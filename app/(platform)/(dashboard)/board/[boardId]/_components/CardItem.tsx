@@ -18,7 +18,7 @@ const CardItem: FC<CardItemProps> = ({ data, index }) => {
           {...provided.dragHandleProps}
           ref={provided.innerRef}
           role="button"
-          className="truncate border-2 border-transparent hover:border-black py-2 px-3 text-sm bg-white rounded-md shadow-sm transition"
+          className="truncate mb-2 border-2 border-transparent hover:border-black py-2 px-3 text-sm bg-white rounded-md shadow-sm transition"
         >
           {data.title}
         </div>

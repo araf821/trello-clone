@@ -8,6 +8,7 @@ import { DragDropContext, Droppable } from "@hello-pangea/dnd";
 import { useAction } from "@/hooks/useAction";
 import { updateListOrder } from "@/actions/update-list-order";
 import { toast } from "sonner";
+import { updateCardOrder } from "@/actions/update-card-order";
 
 interface ListContainerProps {
   boardId: string;
@@ -24,12 +25,19 @@ function reorder<T>(list: T[], startIndex: number, endIndex: number) {
 }
 
 const ListContainer: FC<ListContainerProps> = ({ boardId, data }) => {
+  const [orderedData, setOrderedData] = useState(data);
+
   const { execute: executeUpdateListOrder } = useAction(updateListOrder, {
     onError: (e) => {
       toast.error(e);
     },
   });
-  const [orderedData, setOrderedData] = useState(data);
+
+  const { execute: executeUpdateCardOrder } = useAction(updateCardOrder, {
+    onError: (e) => {
+      toast.error(e);
+    },
+  });
 
   useEffect(() => {
     setOrderedData(data);
@@ -100,7 +108,10 @@ const ListContainer: FC<ListContainerProps> = ({ boardId, data }) => {
         sourceList.cards = reorderedCards;
 
         setOrderedData(newOrderedData);
-        // TODO: trigger server action
+        executeUpdateCardOrder({
+          boardId,
+          items: reorderedCards,
+        });
 
         // User moves the card to another list
       } else {
@@ -123,7 +134,10 @@ const ListContainer: FC<ListContainerProps> = ({ boardId, data }) => {
         });
 
         setOrderedData(newOrderedData);
-        // TODO: trigger server action
+        executeUpdateCardOrder({
+          boardId,
+          items: destinationList.cards,
+        });
       }
     }
   };
@@ -135,7 +149,7 @@ const ListContainer: FC<ListContainerProps> = ({ boardId, data }) => {
           <ol
             {...provided.droppableProps}
             ref={provided.innerRef}
-            className="flex gap-x-3 h-full"
+            className="flex h-full"
           >
             {orderedData.map((list, index) => {
               return <ListItem key={list.id} index={index} data={list} />;
