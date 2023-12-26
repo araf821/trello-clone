@@ -6,6 +6,7 @@ import { useCardModal } from "@/hooks/useCardModal";
 import { useQuery } from "@tanstack/react-query";
 import { CardWithList } from "@/types";
 import { fetcher } from "@/lib/fetcher";
+import { Header } from "./Header";
 
 interface CardModalProps {}
 
@@ -21,7 +22,9 @@ const CardModal: FC<CardModalProps> = ({}) => {
 
   return (
     <Dialog onOpenChange={close} open={isOpen}>
-      <DialogContent>{cardData?.title}</DialogContent>
+      <DialogContent>
+        {!cardData ? <Header.Skeleton /> : <Header data={cardData} />}
+      </DialogContent>
     </Dialog>
   );
 };
