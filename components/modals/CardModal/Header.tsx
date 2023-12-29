@@ -22,6 +22,10 @@ export const Header = ({ data }: HeaderProps) => {
         queryKey: ["card", data.id],
       });
 
+      queryClient.invalidateQueries({
+        queryKey: ["card-logs", data.id],
+      });
+
       setTitle(data.title);
     },
     onError: (e) => {
