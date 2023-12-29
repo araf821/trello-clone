@@ -8,6 +8,7 @@ import { CardWithList } from "@/types";
 import { fetcher } from "@/lib/fetcher";
 import { Header } from "./Header";
 import Description from "./Description";
+import Actions from "./Actions";
 
 interface CardModalProps {}
 
@@ -35,6 +36,7 @@ const CardModal: FC<CardModalProps> = ({}) => {
               )}
             </div>
           </div>
+          {!cardData ? <Actions.Skeleton /> : <Actions data={cardData} />}
         </div>
       </DialogContent>
     </Dialog>
