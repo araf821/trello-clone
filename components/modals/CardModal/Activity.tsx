@@ -1,5 +1,6 @@
 "use client";
 
+import ActivityItem from "@/components/ActivityItem";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AuditLog } from "@prisma/client";
 import { ActivityIcon } from "lucide-react";
@@ -16,7 +17,7 @@ const Activity = ({ logs }: ActivityProps) => {
         <p className="font-semibold text-neutral-700 mb-2">Activity</p>
         <ol className="mt-2 space-y-4">
           {logs.map((log) => (
-            <p key={log.id}>{log.entityTitle}</p>
+            <ActivityItem key={log.id} log={log} />
           ))}
         </ol>
       </div>

@@ -41,14 +41,14 @@ const CardModal: FC<CardModalProps> = ({}) => {
               ) : (
                 <Description data={cardData} />
               )}
+              {!auditLogsData ? (
+                <Activity.Skeleton />
+              ) : (
+                <Activity logs={auditLogsData} />
+              )}
             </div>
           </div>
           {!cardData ? <Actions.Skeleton /> : <Actions data={cardData} />}
-          {!auditLogsData ? (
-            <Activity.Skeleton />
-          ) : (
-            <Activity logs={auditLogsData} />
-          )}
         </div>
       </DialogContent>
     </Dialog>
