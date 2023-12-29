@@ -9,6 +9,8 @@ import { fetcher } from "@/lib/fetcher";
 import { Header } from "./Header";
 import Description from "./Description";
 import Actions from "./Actions";
+import { AuditLog } from "@prisma/client";
+import Activity from "./Activity";
 
 interface CardModalProps {}
 
@@ -20,6 +22,11 @@ const CardModal: FC<CardModalProps> = ({}) => {
   const { data: cardData } = useQuery<CardWithList>({
     queryKey: ["card", id],
     queryFn: () => fetcher(`/api/cards/${id}`),
+  });
+
+  const { data: auditLogsData } = useQuery<AuditLog[]>({
+    queryKey: ["card-logs", id],
+    queryFn: () => fetcher(`/api/cards/${id}/logs`),
   });
 
   return (
@@ -37,6 +44,11 @@ const CardModal: FC<CardModalProps> = ({}) => {
             </div>
           </div>
           {!cardData ? <Actions.Skeleton /> : <Actions data={cardData} />}
+          {!auditLogsData ? (
+            <Activity.Skeleton />
+          ) : (
+            <Activity logs={auditLogsData} />
+          )}
         </div>
       </DialogContent>
     </Dialog>
