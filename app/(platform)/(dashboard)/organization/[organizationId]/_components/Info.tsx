@@ -4,9 +4,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useOrganization } from "@clerk/nextjs";
 import { CreditCard } from "lucide-react";
 import Image from "next/image";
-import { FC } from "react";
 
-export const Info = ({}: {}) => {
+export const Info = ({ isPro }: { isPro: boolean }) => {
   const { organization, isLoaded } = useOrganization();
 
   if (!isLoaded) {
@@ -26,7 +25,7 @@ export const Info = ({}: {}) => {
       <div className="space-y-1">
         <p className="font-semibold text-xl">{organization?.name}</p>
         <div className="flex items-center text-xs text-muted-foreground">
-          <CreditCard className="h-3 w-3 mr-1" /> Free
+          <CreditCard className="h-3 w-3 mr-1" /> {isPro ? "Pro" : "Free"}
         </div>
       </div>
     </div>
